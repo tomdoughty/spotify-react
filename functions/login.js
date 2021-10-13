@@ -12,7 +12,7 @@ exports.handler = (event, context, callback) => {
 
     // Redirect to Spotify auth and set state cookie
     return callback(null, {
-      statusCode: 301,
+      statusCode: 302,
       headers: {
         Location: url,
         'Access-Control-Expose-Headers': 'Set-Cookie',
