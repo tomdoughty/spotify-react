@@ -12,12 +12,12 @@ exports.handler = () => {
 
     // Redirect to Spotify auth and set state cookie
     return {
-      statusCode: 302,
-        headers: {
-          'Location': url,
-          'Access-Control-Expose-Headers': 'Set-Cookie',
-          'Set-Cookie': `state=${state}; Path=/; Max-Age=60`,
-        }
+      statusCode: 301,
+      headers: {
+        'Location': url,
+        'Access-Control-Expose-Headers': 'Set-Cookie',
+        'Set-Cookie': `state=${state}; Path=/; Max-Age=3600`,
+      }
     }
   } catch(error) {
     // TODO create error route within application
