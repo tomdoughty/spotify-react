@@ -19,7 +19,9 @@ export default function Profile() {
       { display_name &&
         <>
           <h1>{ display_name }</h1>
-          <img src={ images[0].url } alt={display_name} />
+          { images[0] &&
+            <img src={ images[0].url } alt={display_name} />
+          }
           <button onClick={() => dispatch(getPlaylists())}>
             { status === 'idle' ? 'Get playlists' : 'Loading' }
           </button>

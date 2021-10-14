@@ -6,6 +6,7 @@ const spotifyApi = new Spotify();
 export const initialState = {
   user: {
     display_name: null,
+    images: [],
   },
   playlists: [],
   tokens: {
