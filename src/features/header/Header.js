@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function Header() {
-  const user = useSelector((state) => state.user.user);
+  const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
   const history = useHistory();
   

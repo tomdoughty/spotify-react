@@ -4,7 +4,9 @@ import Spotify from "spotify-web-api-js";
 const spotifyApi = new Spotify();
 
 export const initialState = {
-  user: {},
+  user: {
+    display_name: null,
+  },
   playlists: [],
   tokens: {
     accessToken: null,
@@ -61,7 +63,7 @@ export const loginSlice = createSlice({
 
 export const { setTokens, logOut } = loginSlice.actions;
 
-export const selectAccessTokens = (state) => state.user.tokens.accessToken;
+export const selectAccessTokens = (state) => state.tokens.accessToken;
 
 export const login = (payload) => (dispatch) => {
   dispatch(setTokens(payload));
