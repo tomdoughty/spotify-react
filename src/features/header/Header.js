@@ -1,25 +1,35 @@
 import React from 'react';
-import { logOut } from '../login/loginSlice';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
   const { user } = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const history = useHistory();
-  
-  const handleLogOut = () => {
-    dispatch(logOut());
-    history.push('/');
-  }
 
   return (
-    <div>
-      { user.display_name ? 
-        <p>Hey {user.display_name} - <button onClick={handleLogOut}>Log out</button></p>
-      :
-        <a href="/.netlify/functions/login">Login</a>
-      }
+    <div className="header-container">
+      <header>
+        <div className="header-left">
+          <Link to="/">Tomify</Link>
+        </div>
+        <div className="header-right">
+          { user.display_name ? 
+            <ul>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/logout">Log out</Link>
+              </li>
+            </ul>
+          :
+            <ul>
+              <li>
+                <a href="/.netlify/functions/login">Login</a>
+              </li>
+            </ul>
+          }
+        </div>
+      </header>
     </div>
   );
 }

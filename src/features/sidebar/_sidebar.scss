@@ -1,0 +1,31 @@
+$background: #333;
+$top: lighten($background, 5%);
+$bottom: darken($background, 5%);
+
+
+.sidebar {
+  float: left;
+  width: 25%;
+  display: block;
+  background-color: #333;
+  list-style: none;
+
+  a {
+    display: block;
+    padding: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    border-left: solid 5px transparent;
+    border-top: solid 1px $top;
+    border-bottom: solid 1px $bottom;
+
+    &.selected {
+      border-left: solid 5px #1ed760;
+    }
+    
+    &:hover {
+      border-left: solid 5px #1ed760;
+    }
+  }
+}

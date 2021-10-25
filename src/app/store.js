@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import loginReducer from '../features/login/loginSlice';
+import spotifyReducer from '../features/spotify/spotifySlice';
 
 export const store = configureStore({
-  reducer: loginReducer,
+  reducer: spotifyReducer
 });

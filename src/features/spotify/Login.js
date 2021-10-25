@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { withRouter, useParams, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { login } from './loginSlice';
+import { login } from './spotifySlice';
 
 function Login() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function Login() {
       refreshToken,
     }));
     history.push('/profile');
-  },[dispatch, history, accessToken, refreshToken]);
+  }, [dispatch, history, accessToken, refreshToken]);
 
   return null;
 }

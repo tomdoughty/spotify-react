@@ -1,0 +1,55 @@
+.header-container {
+  background-color: #000;
+}
+
+header {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+
+  &:after {
+    content: "";
+    display: table;
+    width: 100%;
+  }
+}
+
+.header-left {
+  float: left;
+
+  a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+
+    &:hover {
+      color: #1ed760;
+    }
+  }
+}
+
+.header-right {
+  float: right;
+  
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+      margin-left: 20px;
+
+      a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+
+        &:hover {
+          color: #1ed760;
+        }
+      }
+    }
+  }
+}
+

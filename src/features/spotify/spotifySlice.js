@@ -5,7 +5,10 @@ const spotifyApi = new Spotify();
 
 export const initialState = {
   user: {
+    country: null,
     display_name: null,
+    email: null, 
+    id: null,
     images: [],
   },
   playlists: [],
@@ -17,7 +20,7 @@ export const initialState = {
 };
 
 export const setUser = createAsyncThunk(
-  'user/setUser',
+  'spotify/setUser',
   (accessToken) => {
     spotifyApi.setAccessToken(accessToken);
     return spotifyApi.getMe()
@@ -25,7 +28,7 @@ export const setUser = createAsyncThunk(
 );
 
 export const setPlaylists = createAsyncThunk(
-  'user/setPlaylists',
+  'spotify/setPlaylists',
   async (accessToken) => {
     spotifyApi.setAccessToken(accessToken);
     const { items } = await spotifyApi.getUserPlaylists();
@@ -33,8 +36,8 @@ export const setPlaylists = createAsyncThunk(
   }
 );
 
-export const loginSlice = createSlice({
-  name: 'user',
+export const spotifySlice = createSlice({
+  name: 'spotify',
   initialState,
   reducers: {
     setTokens: (state, action) => {
@@ -62,13 +65,17 @@ export const loginSlice = createSlice({
   },
 });
 
-export const { setTokens, logOut } = loginSlice.actions;
+export const { setTokens, logOut } = spotifySlice.actions;
 
 export const selectAccessTokens = (state) => state.tokens.accessToken;
 
 export const login = (payload) => (dispatch) => {
   dispatch(setTokens(payload));
-  dispatch(setUser(payload.accessToken));
+};
+
+export const getUser = () => (dispatch, getState) => {
+  const accessToken = selectAccessTokens(getState())
+  dispatch(setUser(accessToken));
 };
 
 export const getPlaylists = () => (dispatch, getState) => {
@@ -76,4 +83,4 @@ export const getPlaylists = () => (dispatch, getState) => {
   dispatch(setPlaylists(accessToken));
 };
 
-export default loginSlice.reducer;
+export default spotifySlice.reducer;

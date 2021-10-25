@@ -1,38 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlaylists } from '../login/loginSlice';
+import Sidebar from '../sidebar/Sidebar';
+import { getUser } from '../spotify/spotifySlice';
 
 export default function Profile() {
   const { 
-    playlists,
-    status,
     user: {
+      country,
       display_name,
-      images,
+      email, 
+      id,
     }
   } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
   return (
     <div>
       { display_name &&
         <>
-          <h1>{ display_name }</h1>
-          { images[0] &&
-            <img src={ images[0].url } alt={display_name} />
-          }
-          <button onClick={() => dispatch(getPlaylists())}>
-            { status === 'idle' ? 'Get playlists' : 'Loading' }
-          </button>
+          <h1 className="hero">Account overview</h1>
+          <Sidebar />
+          <div className="content">
+            <h2>Profile</h2>
+            <dl>
+                <dt>Display name</dt>
+                <dd>{ display_name }</dd>
+            </dl>
+            <dl>
+                <dt>Username</dt>
+                <dd>{ id }</dd>
+            </dl>
+            <dl>
+                <dt>Email</dt>
+                <dd>{ email }</dd>
+            </dl>
+            <dl>
+                <dt>Country</dt>
+                <dd>{ country }</dd>
+            </dl>
+          </div>
         </>
-      }
-      { playlists &&
-        <ul>
-          { playlists.map((playlist) => (
-            <li>{ playlist.name }</li>
-          )) }
-        </ul>
       }
     </div>
   );

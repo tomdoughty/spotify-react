@@ -1,15 +1,15 @@
-import loginReducer, {
+import spotifyReducer, {
   setTokens,
   initialState
-} from './loginSlice';
+} from './spotifySlice';
 
 describe('login reducer', () => {
   it('should handle initial state', () => {
-    expect(loginReducer(undefined, { type: 'unknown' })).toEqual(initialState);
+    expect(spotifyReducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });
 
   it('should handle setting tokens', () => {
-    const actual = loginReducer(initialState, setTokens({
+    const actual = spotifyReducer(initialState, setTokens({
       accessToken: 'accessToken',
       refreshToken: 'refreshToken',
     }));
